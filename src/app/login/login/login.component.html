@@ -1,0 +1,21 @@
+<div>
+    <div class="container rounded-lg">
+        <div class="logo-container mt-3">
+            <img src="../../../assets/images/sidenav-Logo.png" [ngClass]="{
+                        'img-fluid': loginInProgress
+                      }" />
+        </div>
+        <div class="button-container">
+            <div class="content mt-4">
+                <!-- <h1>Client Portal</h1> -->
+                <button class="btn btn-lg btn-primary" *ngIf="!loginInProgress"
+                    (click)="loginToPortal()">
+                    Login
+                </button>
+                <mat-progress-spinner mode="indeterminate" diameter="45" [color]="Constants.styleConstants.SPINNER_COLOR"
+                class="spinner" *ngIf="loginInProgress">
+            </mat-progress-spinner>
+            </div>
+        </div>
+    </div>
+</div>

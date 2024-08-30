@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" [routerLink]='[Constants.navigations.ACCOUNT_DETAILS]'
+            routerLinkActive='active'>
+            My Account
+        </a>
+    </li>
+    <li class="nav-item" *ngIf='showUserTab'>
+        <a class="nav-link" data-toggle="tab" [routerLink]="[Constants.navigations.USERS]"
+            routerLinkActive='active'>Users</a>
+    </li>
+</ul>
+
+<div id="myTabContent" class="tab-content remove-margin">
+    <router-outlet></router-outlet>
+</div>

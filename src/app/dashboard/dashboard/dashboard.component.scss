@@ -1,0 +1,184 @@
+// @import "../../../custom.scss";
+
+.list-font-family {
+  font-family: "PT Sans", sans-serif;
+}
+
+.list-font-size {
+  font-size: 0.875rem;
+}
+
+.dashboard-container {
+  // margin-left: 20vw;
+  // width: 78%;
+  position: relative;
+
+  p {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  app-client-list {
+    font-size: 15px;
+    position: fixed;
+    top: 8.2rem;
+    right: 2rem;
+    background-color: #00cdb8;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+#dashboardContainer {
+  height: 55vh;
+  width: 100% !important;
+
+  ::ng-deep iframe {
+    border: none;
+  }
+}
+
+.report-details {
+  height: 77vh;
+}
+
+.backToDashboard {
+  position: absolute;
+  // top: 1%;
+  // margin: 2.8rem 0rem;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+@media only screen and (min-width: 501px) and (max-width: 850px) {
+  .dashboard-container {
+    margin-left: 2vw !important;
+    width: 95%;
+
+    app-client-list {
+      font-size: 15px;
+      position: fixed;
+      top: 7rem !important;
+      right: 4%;
+      background-color: #00cdb8;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .backToDashboard {
+    margin: 3rem 0rem;
+  }
+
+  #dashboardContainer {
+    height: 68vh;
+    width: 108%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  app-client-list {
+    font-size: 15px;
+    position: fixed;
+    top: 6.7rem !important;
+    right: 4%;
+    background-color: #00cdb8;
+    color: white;
+    cursor: pointer;
+  }
+
+  .card-height {
+    height: 15rem !important;
+  }
+}
+
+@media only screen and (min-height: 850px) {
+  app-client-list {
+    font-size: 15px;
+    position: fixed;
+    top: 12% !important;
+    right: 3%;
+    background-color: #00cdb8;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.gap-bw-msgAndName {
+  margin-bottom: 15px;
+}
+
+.contact-admin-container {
+  padding: 0%;
+  font-size: 24px;
+}
+
+.mail-text {
+  padding-left: 4px;
+}
+
+.card-height {
+  height: 12rem;
+}
+
+@media only screen and (max-width: 400px) {
+  .dashboard-container {
+    margin-left: 2vw !important;
+    width: 96%;
+
+    app-client-list {
+      font-size: 15px;
+      position: fixed;
+      top: 7rem !important;
+      right: 2rem;
+      background-color: #00cdb8;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  #dashboardContainer {
+    height: 68vh;
+  }
+}
+
+.dashboard-container-on-tile-click {
+  position: relative;
+}
+
+@media only screen and (min-width: 850px) {
+  .dashboard-container-on-tile-click {
+    margin-left: 20vw;
+    width: 78%;
+  }
+
+  .reporting-class {
+    height: 82vh !important;
+  }
+}
+
+.right {
+  text-align: right;
+}
+
+.text-alignment {
+  font-size: 14px;
+}
+
+.align-heading {
+  padding-left: 3%;
+}
+
+.download-link {
+  cursor: pointer;
+  font-weight: 700 !important;
+  text-decoration: underline;
+}
+
+.text-alignment {
+  padding-right: 15%;
+  font-weight: 400;
+}
+
+.align-heading {
+  padding-left: 3%;
+}

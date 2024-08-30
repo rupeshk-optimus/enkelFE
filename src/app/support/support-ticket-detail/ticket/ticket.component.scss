@@ -1,0 +1,26 @@
+textarea {
+    resize: none;
+  }
+  .status-container {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+  }
+
+  .status-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+  .sender-email {
+      color: #400094;
+  }
+
+  .sender-box-header {
+      color: #6c757d;
+  }

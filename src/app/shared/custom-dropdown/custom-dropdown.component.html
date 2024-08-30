@@ -1,0 +1,23 @@
+<div class="btn-group" dropdown [autoClose]="true">
+    <button id="button-nested" dropdownToggle type="button" class="btn btn-light dropdown-toggle custom-drop"
+        aria-controls="dropdown-nested" title="{{ selectedOption.name }}">
+        {{ selectedOption.name | truncateText:10 }} <span class="caret"></span>
+    </button>
+    <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
+        <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ list: options }"></ng-container>
+
+        <ng-template #recursiveListTmpl let-list="list">
+            <li *ngFor="let item of list" role="menuitem" dropdown triggers="mouseover" placement="left">
+                <a dropdownToggle class="dropdown-item" (click)="false" [ngClass]="{'dropdown-toggle': item.childDirectories?.length > 0}"
+                    (click)="changeSelectedOption(item)">
+                    {{ item.name }}
+                </a>
+                <ul *ngIf="item.childDirectories?.length > 0" id="dropdown-nested" role="menuitem" dropdown
+                    triggers="mouseover" placement="left">
+                    <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ list: item.childDirectories }">
+                    </ng-container>
+                </ul>
+            </li>
+        </ng-template>
+    </ul>
+</div>

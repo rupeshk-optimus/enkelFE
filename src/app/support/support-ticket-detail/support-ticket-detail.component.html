@@ -1,0 +1,26 @@
+<div class="row mt-5">
+    <div class="col-12 d-flex justify-content-between align-items-center pr-4">
+        <div class=" d-flex align-items-center">
+            <i class="fad fa-th-large primary-color-icons"></i>
+            <strong>
+                Ticket: {{supportTicketId}}
+            </strong>
+        </div>
+        <div class="back-button-container">
+            <button class="btn btn-secondary custom-btn" (click)="goBack()">
+                Back
+            </button>
+        </div>
+    </div>
+</div>
+<app-ticket *ngIf='supportTicketDetails' [supportTicketDetails]='supportTicketDetails'></app-ticket>
+<div class="col-lg-8 col-md-12 px-0" *ngIf='showAttachmentComponent'>
+    <app-ticket-attachments [supportTicketAttachments]='supportTicketAttachments'
+        [totalAttachments]='supportTicketMetaData.totalAttachments'>
+    </app-ticket-attachments>
+</div>
+<div class="col-lg-8 col-md-12 px-0" *ngIf='showCommentComponent'>
+    <app-ticket-response [supportTicketComments]='supportTicketComments'
+        [totalResponse]='supportTicketMetaData.totalResponse' (updateComponent)='updateSupportTicket()'>
+    </app-ticket-response>
+</div>

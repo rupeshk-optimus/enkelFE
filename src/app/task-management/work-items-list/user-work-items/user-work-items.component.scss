@@ -1,0 +1,40 @@
+/* WORK ITEM FILTERS STARTS */
+.reset-filters {
+    font-size: 20px;
+    margin-top: 7px;
+    color: #400094;
+    cursor: pointer;
+}
+
+:host::ng-deep .mat-form-field-infix {
+    margin-top: -20px !important;
+}
+
+:host::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+/* WORK ITEM FILTERS ENDS */
+
+/* WORK ITEM STATUS STARTS */
+.status-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+/* WORK ITEM STATUS ENDS */
+
+/* WORK ITEM OPTION BUTTON STARTS */
+.mat-mini-fab {
+    background-color: #400094;
+    box-shadow: none;
+    width: 24px;
+    height: 24px;
+}
+
+.more-icon {
+    font-size: 18px;
+    margin-top: -11px;
+    color: white;
+}
+/* WORK ITEM OPTION BUTTON ENDS */

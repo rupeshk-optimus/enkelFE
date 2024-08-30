@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<testsuite name="HeadlessChrome 88.0.4324 (Windows 10.0.0)" package="" timestamp="2021-02-26T09:21:22" id="0" hostname="DESKTOP-3G8P8UM" tests="22" errors="0" failures="0" time="0.65">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/88.0.4324.182 Safari/537.36"/>
+  </properties>
+  <testcase name="AccountService should get account details of the user" time="0.092" classname="AccountService"/>
+  <testcase name="AccountService should be created" time="0.038" classname="AccountService"/>
+  <testcase name="AccountService should update account details of the user" time="0.033" classname="AccountService"/>
+  <testcase name="ReportService should get url for dashboard reports" time="0.038" classname="ReportService"/>
+  <testcase name="ReportService should be created" time="0.026" classname="ReportService"/>
+  <testcase name="ReportService should get list of report metaData" time="0.03" classname="ReportService"/>
+  <testcase name="ReportService should get a report to be downloaded" time="0.022" classname="ReportService"/>
+  <testcase name="ReportService should get contents of a folder" time="0.023" classname="ReportService"/>
+  <testcase name="AddWorkItemsComponent should create" time="0.081" classname="AddWorkItemsComponent"/>
+  <testcase name="ConnectToCslService should be created" time="0.022" classname="ConnectToCslService"/>
+  <testcase name="ConnectToCslService should send mail to the CSL" time="0.019" classname="ConnectToCslService"/>
+  <testcase name="ConnectToCslService should get information of the CSL" time="0.021" classname="ConnectToCslService"/>
+  <testcase name="CpUserService should get list of Client contacts" time="0.03" classname="CpUserService"/>
+  <testcase name="CpUserService should be created" time="0.019" classname="CpUserService"/>
+  <testcase name="DialogService should be created" time="0.017" classname="DialogService"/>
+  <testcase name="DialogService should create a folder" time="0.019" classname="DialogService"/>
+  <testcase name="DialogService should get a list of clients" time="0.016" classname="DialogService"/>
+  <testcase name="FileUploaderService should delete file successfully" time="0.019" classname="FileUploaderService"/>
+  <testcase name="FileUploaderService should be created" time="0.017" classname="FileUploaderService"/>
+  <testcase name="FileUploaderService should get a file to be downloaded" time="0.023" classname="FileUploaderService"/>
+  <testcase name="FileUploaderService should get list of file metaData" time="0.025" classname="FileUploaderService"/>
+  <testcase name="FileUploaderService should get contents of a folder" time="0.02" classname="FileUploaderService"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

@@ -1,0 +1,140 @@
+// /* You can add global styles to this file, and also import other style files */
+
+@import './css/bootstrap-custom.css';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Libre Franklin', sans-serif !important;
+  font-weight: bold !important;
+  color: #400094 !important;
+}
+
+.btn:focus, .btn.focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgb(64 0 148 / 25%) !important;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgb(64 0 148 / 50%) !important;
+}
+.btn-success:focus, .btn-success.focus {
+  box-shadow: 0 0 0 0.2rem rgb(0 205 184 / 50%) !important;
+}
+
+.tour-button {
+  padding: 0px !important;
+  border-radius: 50% !important;
+  width: 30px !important;
+  min-width: 0px !important;
+  height: 30px !important;
+  background-color: #00cdb8 !important;
+}
+
+.tour-button:hover{
+  padding: 0px;
+  border-radius: 50%;
+  width: 30px;
+  min-width: 0px;
+  height: 30px;
+}
+
+.tour-button:focus{
+  outline: 0;
+}
+
+.tour-icon {
+  color: white;
+  // display: flex !important;
+  // justify-content: center;
+  // margin: 1px -2px;
+  margin-top: -7px;
+}
+
+.tour-go-next {
+  margin-left: 2px;
+}
+
+.tour-go-previous {
+  margin-left: -1px;
+}
+
+.joyride-step__title {
+  font-weight: 900 !important;
+  font-family: 'Libre Franklin', sans-serif !important;
+  font-size: 18px !important;
+  color: #400094 !important;
+}
+
+.joyride-step__body {
+  text-align: left !important;
+  padding: 8px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: 20rem !important;
+}
+
+.joyride-step__footer {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px !important;
+}
+
+.joyride-step__counter-container {
+  margin-right: 10px !important;
+  font-size: 12px !important;
+  font-family: 'Libre Franklin', sans-serif !important;
+  color: grey !important;
+}
+
+.joyride-step__container {
+  border-radius: 1rem !important;
+}
+
+.mat-menu-content:not(:empty) {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+  border-color: #ced4da !important;
+}
+
+.custom-btn {
+  width: 100px;
+  font-size: 15px !important;
+  border-radius: 2rem !important;
+}
+
+*:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.mat-dialog-container {
+  border-radius: 20px !important;
+}
+
+.mail-success {
+  background-color: #f6f6fe;
+  color: #400094;
+  font-family:  'PT Sans', sans-serif !important;
+}
+
+.primary-color-icons {
+  color: #400094;
+  font-size: 20px;
+  margin-right: 5px;
+}

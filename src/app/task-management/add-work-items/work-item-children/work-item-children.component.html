@@ -1,0 +1,53 @@
+<div class="card table-card">
+    <div class="card-header d-flex align-items-center">
+        Child Tasks
+        <span class="ml-2 badge badge-success count" *ngIf='totalChildren'> {{totalChildren}} </span>
+    </div>
+    <div *ngIf="!children.length">
+        <p class="noUser">{{Constants.errorMessages.NO_DATA_FOUND}}</p>
+    </div>
+    <div class="card-body" *ngIf="children.length">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <tbody>
+                            <tr *ngFor='let child of children'>
+                                <td title="{{child.name}}">
+                                    <i class="fad fa-th-large mr-1" [style.color]="child.iconColor"></i>
+                                    {{child.name | truncateText:25}}
+                                </td>
+                                <td title="{{ child.assigneeName }}">{{ child.assigneeName | truncateText:15 }}</td>
+                                <td class="d-flex justify-content-start align-items-center">
+                                    <div class="status-box" [style.background-color]="child.color"></div>
+                                    {{child.state}}
+                                </td>
+                                <td>
+                                    <button mat-mini-fab class="menu-button" [matMenuTriggerFor]="menu">
+                                        <mat-icon class="more-icon">more_horiz</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="watchWorkItem(child)"
+                                            *ngIf='child.allowWatchItem'>
+                                            <span>Watch Item</span>
+                                        </button>
+                                        <button mat-menu-item (click)="unWatchWorkItem(child)"
+                                            *ngIf='!child.allowWatchItem'>
+                                            <span>Unwatch</span>
+                                        </button>
+                                        <button mat-menu-item (click)="copyWorkItemLink(child)">
+                                            <span>Copy Link</span>
+                                        </button>
+                                        <button mat-menu-item (click)="editWorkItem(child)">
+                                            <span>Edit</span>
+                                        </button>
+                                    </mat-menu>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

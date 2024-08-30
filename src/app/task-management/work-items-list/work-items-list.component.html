@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" [routerLink]='[Constants.navigations.MY_WORK_ITEMS]'
+            routerLinkActive='active route-link'>
+            My Items
+            <span class="ml-2 badge badge-success count"> {{workItemMetaData?.totalAssignedActive}} </span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" [routerLink]='[Constants.navigations.WATCHED_WORK_ITEMS]'
+            routerLinkActive='active route-link'>
+            Watched
+            <span class="ml-2 badge badge-success count"> {{workItemMetaData?.totalWatchedActive}} </span>
+        </a>
+    </li>
+</ul>
+
+<div class="card table-card mt-0 router-holder">
+    <router-outlet></router-outlet>
+</div>

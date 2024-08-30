@@ -1,0 +1,382 @@
+$primary:       #400094 !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+body {
+  font-size: .875rem;
+  font-family: 'PT Sans', sans-serif;
+  background-color: #F5F5FF;
+  background-image: url("/images/background_main.svg");
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Libre Franklin', sans-serif;
+  font-weight: bold;
+  color: #400094;
+}
+
+.h2 {
+  font-size: 1.3rem;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+   * Sidebar
+   */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  /* Behind the navbar */
+  padding: 0 0 0;
+  /* Height of navbar */
+  margin-left: 1em;
+  border-right: 1em solid rgba(0, 0, 0, 0);
+  transition: 0.3s;
+}
+
+.sidebar.active {
+  display: block!important;
+}
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 88px);
+  background-color: white;
+  margin-top: 88px;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+  overflow: visible;
+}
+
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+  padding: 0px;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+  color: #400094;
+  background: #F5F5FF;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.sidebar .icon-container {
+  display: inline-block;
+  padding: 0.5em 1em 0.5em 1em;
+  transition: 0.5s;
+  border-left: 1em solid rgba(64, 0, 148, 0);
+  margin-left: -1em;
+}
+
+.icon-container .fad {
+  transition: 0.3s;
+  color: #400094;
+}
+
+.sidebar .nav-link:hover .icon-container,
+.sidebar .nav-link.active .icon-container {
+  background-color: #400094;
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+  border-left: 1em solid rgba(64, 0, 148, 100);
+}
+
+.sidebar .nav-link:hover .icon-container .fad,
+.sidebar .nav-link.active .icon-container .fad {
+  color: white;
+}
+
+.sidebar .text-label {
+  display: inline-block;
+  padding: 0.5em 1em 0.5em 0.5em;
+}
+
+.sidebar-settings {
+  width: 240px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.05);
+  display: none;
+  transition: 0.3s;
+}
+
+@media (max-width: 47.9em) {
+  .sidebar-settings {
+    width: 100%;
+  }
+}
+
+.sidebar-settings.active {
+  display: block;
+}
+
+.sidebar-settings .nav-link {
+  padding: 0;
+}
+
+.sidebar-settings .nav-link > div {
+  display: inline-block;
+}
+
+// .sidebar-settings .icon-container {
+//   padding: 0.5em 1em 0.5em 1em;
+// }
+
+.sidebar-settings .nav-link {
+  transition: 0.5s;
+}
+
+.sidebar-settings .nav-link:hover {
+  background-color: #00cdb8;
+}
+
+.sidebar-settings .nav-link:hover > div {
+  color: white;
+}
+
+
+/*
+   * Content
+   */
+
+[role="main"] {
+  padding-top: 6em;
+}
+
+
+@media (min-width: 768px) {
+  [role="main"] {
+    padding-top: 0em;
+    /* Space for fixed navbar */
+  }
+}
+
+/*
+   * Navbar
+   */
+
+.navbar {
+  pointer-events: none;
+}
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: white;
+  pointer-events: auto;
+}
+
+#navbar-logo {
+  max-height: 4em;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.navbar-settings {
+  display: flex;
+  flex-direction: row-reverse;
+  pointer-events: initial;
+  cursor:pointer;
+}
+
+
+@media (max-width: 47.9em) {
+  .navbar {
+    background-color: white;
+  }
+  .navbar .menu-icon {
+    font-size: 2rem;
+  }
+  .navbar .fa-caret-down {
+    display: none;
+  }
+}
+
+
+.user-circle {
+  background-color: #00cdb8;
+  border-radius: 3em;
+  width: 3em;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  pointer-events: auto;
+  font-family: 'Libre Franklin';
+  transition: 0.3s;
+  margin-right: 1.25em;
+}
+
+.user-circle:hover,
+.user-circle.active {
+  background-color: #86e7de;
+}
+
+.user-circle:hover .fa-caret-down {
+  transition: 0.3s;
+  color: #86e7de;
+}
+
+.user-circle .fa-caret-down {
+  position: absolute;
+  color: #333333;
+  margin-left: 2.25em;
+}
+
+/* Heading */
+
+.heading-icon {
+  height: 2em;
+}
+
+/* Navigation */
+
+.breadcrumb {
+  background-color: transparent;
+}
+
+
+/* Cards */
+
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.05);
+  -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.05);
+  margin: 2rem 0;
+  border: none;
+}
+
+.card-header {
+  padding: 0;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  background-color: transparent;
+  border-bottom: none;
+  color: #400094;
+}
+
+.card-body {
+  padding: 0;
+}
+
+/* Forms */
+
+.form-control {
+  border-radius: 0.5rem;
+}
+
+.btn {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+}
+
+.badge {
+  padding: 0.75em 1em;
+}
+
+/* Tabs */
+
+ul.nav-tabs {
+  border-bottom: 0;
+}
+
+ul.nav-tabs .nav-link {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border: none;
+  padding: 1rem 2rem;
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: bold;
+}
+
+.tab-pane.card {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  margin-top: 0;
+}
+
+.dropdown-menu {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 0.875rem;
+}
+
+/* Tables */
+
+.table thead th, .table td {
+  //border-bottom: 0;
+  border-top: 0;
+  padding: 1.5rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #F6F6FE;
+}
+
+.badge {
+  font-size: 85%;
+}

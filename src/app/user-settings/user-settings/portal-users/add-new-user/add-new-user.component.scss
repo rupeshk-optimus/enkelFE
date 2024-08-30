@@ -1,0 +1,51 @@
+// .extra-padding-for-unchanged-fields {
+//   padding-left: 1rem;
+// }
+
+// .card-header-options {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+.icon-button {
+  float: right;
+  margin-top: -0.50rem;
+  margin-bottom: 5px;
+
+}
+
+.form-end-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 0;
+}
+
+.margin-for-left-button {
+  margin-right: 1rem;
+}
+
+.edit-icon {
+  margin: 0px 15px;
+}
+
+.edit-icon:focus, .margin-for-left-button, .icon-button:focus  {
+  outline: none;
+}
+
+.padding-for-form-array {
+  padding-top: 1rem;
+}
+
+.card-border {
+  border-radius: 0rem 0rem 1rem 1rem !important;
+}
+
+.remove-icon {
+  margin-left: 5px;
+  border-radius: 7px !important;
+  cursor: pointer;
+}
+
+.required-sign {
+  color:#ff4e4c !important;
+}

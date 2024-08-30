@@ -1,0 +1,176 @@
+<div class="card card-border card-top-left-right-border">
+    <div class="row card-header">
+        <div class="col-12 col-sm-6">
+            My Account
+        </div>
+        <div class="col-12 col-sm-6 text-align reset-btn-mobile">
+            <span>
+                <button mat-mini-fab color="primary" class="margin-for-left-button edit-profile-button" *ngIf="showEditFormButton"
+                    (click)="allowingEditForm()">
+                    <i class="fad fa-user-edit edit-icon"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="resetPassword()">Reset password</button>
+            </span>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form [formGroup]="profileForm">
+                        <fieldset [disabled]="!allowEditForm">
+                            <!-- EMAIL -->
+                            <div class="form-group row extra-padding-for-unchanged-fields">
+                                <label for="accountPrimaryEmail" class="col-form-label col-form-label-sm-4">Primary
+                                    Email</label>
+                                <div class="col-sm-8 my-auto">
+                                    <input type="text" readonly='' class="form-control-plaintext form-control-sm"
+                                        formControlName="myAccountPrimaryEmail">
+                                </div>
+                            </div>
+
+                            <!-- FIRST_NAME -->
+                            <div class="form-group" [ngClass]="{'col-sm-11 permanent-input':allowEditForm}">
+                                <label for="accountFirstName" class="col-form-label col-form-label-sm-4">First
+                                    Name <span class="required-sign" *ngIf='allowEditForm'>*</span></label>
+                                <input type="text" class="form-control" [readonly]='!allowEditForm'
+                                    formControlName="myAccountFirstName"
+                                    [ngClass]="{'is-invalid':(profileForm.controls.myAccountFirstName.touched && !profileForm.controls.myAccountFirstName.valid) ,
+                                 'is-valid':(profileForm.controls.myAccountFirstName.touched && profileForm.controls.myAccountFirstName.valid) }"
+                                    placeholder="Enter First Name" required>
+                            </div>
+
+                            <!-- LAST_NAME -->
+                            <div class="form-group" [ngClass]="{'col-sm-11 permanent-input':allowEditForm}">
+                                <label for="accountLastName" class="col-form-label col-form-label-sm-4">Last
+                                    Name <span class="required-sign" *ngIf='allowEditForm'>*</span></label>
+                                <input type="text" class="form-control" [readonly]='!allowEditForm'
+                                    formControlName="myAccountLastName"
+                                    [ngClass]="{'is-invalid':(profileForm.controls.myAccountLastName.touched && !profileForm.controls.myAccountLastName.valid) ,
+                                 'is-valid':(profileForm.controls.myAccountLastName.touched && profileForm.controls.myAccountLastName.valid) }"
+                                    placeholder="Enter First Name" required>
+                            </div>
+                        </fieldset>
+                        <!-- ROLES -->
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="accountRoles" class="col-sm-4 col-form-label">Role</label>
+                                <div class="col-lg-12">
+                                    <span class="badge badge-secondary extra-badge-padding">
+                                        {{roles}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SECONDARY_EMAILS -->
+                        <fieldset class="padding-for-form-array" *ngIf = 'myAccountSecondaryEmails.controls.length || allowEditForm'>
+                            <label for="accountEmails">Secondary Email</label>
+                            <button mat-mini-fab color="primary" class="icon-button"
+                                *ngIf='showAddSecondaryEmailButton && allowEditForm' (click)="addEmail()"
+                                title="Add email">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                            <div class="form-group" formArrayName='myAccountSecondaryEmails'
+                                *ngFor='let email of myAccountSecondaryEmails.controls; let i=index'>
+                                <div class="input-group mb-3" [formGroupName]='i'>
+                                    <input type="text" class="form-control" aria-describedby="emailHelp"
+                                        [readonly]='!allowEditForm' placeholder="Enter secondary email" [ngClass]="{'is-invalid':(showAddSecondaryEmailButton === false && myAccountSecondaryEmails.touched),
+                                        'is-valid':(myAccountSecondaryEmails.touched && email.controls.name.valid)}"
+                                        formControlName="name">
+                                    <div class="input-group-append" >
+                                        <span class="input-group-text remove-icon" *ngIf = 'allowEditForm' (click)="removeEmail(i)">
+                                            <i class="fal fa-minus"></i>
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="myAccountSecondaryEmails.controls[i].invalid">
+                                        {{constants.errorMessages.incorrectPrimaryEmailLabel}}
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="findDuplicate(email.controls.name.value, 'myAccountSecondaryEmails')">
+                                        {{constants.errorMessages.incorrectEmailLabel}}
+                                    </div>
+                                </div>
+                                <small *ngIf="!email.controls.name.invalid" id="emailHelp" class="form-text text-muted">
+                                    {{constants.helpTextMessages.mailPrivacy}}
+                                </small>
+                            </div>
+                        </fieldset>
+
+
+                        <!-- CONTACT_NUMBERS -->
+
+                        <fieldset class="padding-for-form-array" *ngIf = 'myAccountPhoneNumbers.controls.length || allowEditForm'>
+                            <label for="contactContactNumbers">Contact Numbers</label>
+                            <button mat-mini-fab color="primary" class="icon-button"
+                                *ngIf='showAddPhoneButton && allowEditForm' (click)="addPhoneNumber()"
+                                title="Add contact number">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                            <div class="form-group" formArrayName='myAccountPhoneNumbers'
+                                *ngFor='let phone of myAccountPhoneNumbers.controls; let i=index'>
+                                <div class="input-group mb-3" [formGroupName]="i">
+                                    <input type="text" class="form-control" placeholder="Enter contact number"
+                                        [readonly]='!allowEditForm' [ngClass]="{'is-invalid':(showAddPhoneButton === false && myAccountPhoneNumbers.touched),
+                                        'is-valid':(myAccountPhoneNumbers.valid && myAccountPhoneNumbers.touched)}"
+                                        formControlName="name">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text remove-icon" *ngIf = 'allowEditForm' (click)="removePhoneNumber(i)">
+                                            <i class="fal fa-minus"></i>
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="findDuplicate(phone.controls.name.value, 'myAccountPhoneNumbers')">
+                                        {{constants.errorMessages.incorrectPhoneLabel}}
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="myAccountPhoneNumbers.controls[i].invalid">
+                                        {{constants.errorMessages.incorrectContactLabel}}
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- WEBSITES -->
+
+                        <fieldset class="padding-for-form-array" *ngIf = 'myAccountWebsites.controls.length || allowEditForm'>
+                            <label for="contactContactNumbers">Websites</label>
+                            <button mat-mini-fab color="primary" class="icon-button"
+                                *ngIf='showAddWebsiteButton && allowEditForm' (click)="addWebsite()"
+                                title="Add contact number">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                            <div class="form-group" formArrayName='myAccountWebsites'
+                                *ngFor='let phone of myAccountWebsites.controls; let i=index'>
+                                <div class="input-group mb-3" [formGroupName]="i">
+                                    <input type="text" class="form-control" placeholder="Enter website"
+                                        [readonly]='!allowEditForm' [ngClass]="{'is-invalid':(showAddWebsiteButton === false && myAccountWebsites.touched),
+                                        'is-valid':(myAccountWebsites.valid && myAccountWebsites.touched)}"
+                                        formControlName="name">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text remove-icon" *ngIf = 'allowEditForm' (click)="removeWebsite(i)">
+                                            <i class="fal fa-minus"></i>
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="findDuplicate(phone.controls.name.value, 'myAccountWebsites')">
+                                        {{constants.errorMessages.incorrectPhoneLabel}}
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="myAccountWebsites.controls[i].invalid">
+                                        {{constants.errorMessages.incorrectContactLabel}}
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-12 form-end-button-container" *ngIf='allowEditForm'>
+                <button type="submit" class="btn custom-btn btn-light margin-for-left-button" (click)='resetForm()'>Reset</button>
+                <button type="submit" class="btn custom-btn btn-primary" [disabled]='!profileForm.valid'
+                    (click)='updateDetails()'>Save</button>
+            </div>
+        </div>
+    </div>
+</div>

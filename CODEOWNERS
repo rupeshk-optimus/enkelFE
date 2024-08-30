@@ -1,0 +1,5 @@
+# Specify the owners for the entire repository
+* @naveens-optimus 
+
+# Specify the owners for specific files
+SECURITY.md @vipul.k@enkel.ca @kiran.dash@enkel.ca

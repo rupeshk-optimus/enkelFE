@@ -1,0 +1,186 @@
+<div *ngIf='data.name'>
+    <h1 mat-dialog-title>Welcome {{data.name}}!</h1>
+    <div mat-dialog-content>
+        <p> Let us show you around.</p>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="btn custom-btn btn-light margin-for-left-button" (click)='onNoClick()'>No
+            thanks</button>
+        <button type="button" class="btn custom-btn btn-primary" (click)='startTour()'>Start Tour</button>
+    </div>
+</div>
+
+<!-- DELETE FILE -->
+<div *ngIf='data.delete'>
+    <h1 mat-dialog-title>{{data.delete.heading}}</h1>
+    <div mat-dialog-content>
+        <p>{{data.delete.body + ' ?'}}</p>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="btn custom-btn btn-light margin-for-left-button"
+            (click)='onNoClick()'>Cancel</button>
+        <button type="button" class="btn custom-btn btn-primary" (click)='startTour()'>Yes</button>
+    </div>
+</div>
+<!-- RESET_PASSWORD -->
+<div *ngIf='data.passwordReset'>
+    <h1 mat-dialog-title>Update Password</h1>
+    <div mat-dialog-content>
+        <p>Please select a new password.</p>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="btn custom-btn btn-primary" style="width: 170px;" (click)='resetPassword()'>
+            Reset Password
+        </button>
+    </div>
+</div>
+
+<!-- CREATE_FOLDER -->
+<div *ngIf='data.createFolder'>
+    <h1 mat-dialog-title>Create Folder</h1>
+    <div mat-dialog-content>
+        <input type="text" class="form-control form-control-sm margin-for-left-button" placeholder="Folder Name"
+            [(ngModel)]="folderName">
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="btn btn-light custom-btn margin-for-left-button"
+            (click)='onNoClick()'>Cancel</button>
+        <button type="button" class="btn btn-primary custom-btn" (click)='createFolder()'
+            [disabled]='!folderName'>Create</button>
+    </div>
+</div>
+
+<!-- FILE-FORM-STARTS -->
+<div *ngIf='data.fileUpload'>
+    <div mat-dialog-content class="file-upload-container">
+        <form class="" [formGroup]='fileUploadForm'>
+
+            <table class="table">
+                <thead class="">
+                    <th>Name</th>
+                    <th scope="col" *ngIf="data.componentName === constants.appConstants.FILES">Folder</th>
+                    <th scope="col" *ngIf="data.componentName === constants.appConstants.FILES">Description</th>
+                    <th scope="col" *ngIf="data.componentName === constants.appConstants.FILES">Purpose</th>
+                    <th scope="col" *ngIf="data.componentName === constants.appConstants.FILES">Action Required</th>
+                    <th scope="col" *ngIf="data.componentName === constants.appConstants.FILES && !fileUploadClicked">
+                        Remove</th>
+                    <th scope="col" *ngIf="fileUploadClicked">Status</th>
+                </thead>
+                <tbody class="table-striped">
+                    <ng-container class="form-group " formArrayName='fileToBeUploaded'
+                        *ngFor='let file of fileToBeUploaded.controls; let i=index'>
+                        <tr [formGroupName]='i'>
+
+                            <td>
+                                <span title="{{fileToBeUploaded.value[i].fileName.name}}">
+                                    <span class="font-size left-padding">
+                                        {{fileToBeUploaded.value[i].fileName.name | truncateText:15}}
+                                    </span>
+                                </span>
+                            </td>
+                            <td *ngIf="data.componentName === constants.appConstants.FILES"
+                                style="padding-top: 1.19rem;">
+                                <span *ngIf='directoryTreeDropdown.length > 0'>
+                                    <app-custom-dropdown formControlName="DirectoryId"
+                                        [directoryTree]='directoryTreeDropdown'></app-custom-dropdown>
+                                </span>
+                            </td>
+                            <td *ngIf="data.componentName === constants.appConstants.FILES">
+                                <input type="text" class="form-control form-control-sm margin-for-left-button"
+                                    maxlength="250" placeholder="Description" formControlName="description" required>
+                            </td>
+                            <td *ngIf="data.componentName === constants.appConstants.FILES">
+                                <input type="text" class="form-control form-control-sm margin-for-left-button"
+                                    maxlength="250" placeholder="Purpose" formControlName="purpose" required>
+                            </td>
+                            <td *ngIf="data.componentName === constants.appConstants.FILES">
+                                <input type="text" class="form-control form-control-sm margin-for-left-button"
+                                    maxlength="250" placeholder="Action Required" formControlName="actionRequired"
+                                    required>
+                            </td>
+                            <td>
+                                <div class="input-group-append remove-button" *ngIf='!fileUploadClicked'>
+                                    <span class="input-group-text remove-icon" (click)="removeFile(i)">
+                                        <i class="fal fa-minus"></i>
+                                    </span>
+                                </div>
+                                <circle-progress *ngIf='fileUploadClicked && convertedFileArray[i].progress < 99'
+                                    [percent]="convertedFileArray[i].progress"></circle-progress>
+                                <i class="fal fa-check-circle green-mark" title="Upload Complete"
+                                    *ngIf="convertedFileArray[i].progress >= 99"></i>
+                                <i class="fal fa-exclamation-circle red-mark" title="Error in uploading"
+                                    *ngIf="convertedFileArray[i].progress === 'error'"></i>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div mat-dialog-actions *ngIf='!fileUploadClicked'>
+        <input type="file" #fileDropRef class="fileDropRef" multiple accept='constants.allowedFileFormat.ALL'
+            (change)="addMoreFiles($event.target.files)" />
+        <button type="submit" class="btn btn-light custom-btn margin-for-left-button" (click)='fileDropRef.click()'>Add
+            More</button>
+        <button type="submit" class="btn btn-light custom-btn margin-for-left-button"
+            (click)='onNoClick()'>Cancel</button>
+        <button type="submit" class="btn btn-primary custom-btn" (click)='onSubmit()'
+            [disabled]='!fileUploadForm.valid || invalidExpiryDate'>Save</button>
+    </div>
+    <div mat-dialog-actions *ngIf='fileUploadClicked'>
+        <button type="button" class="btn btn-light custom-btn margin-for-left-button"
+            (click)='startTour()'>Close</button>
+    </div>
+</div>
+<!-- FILE-FORM-ENDS -->
+
+<!-- PREVIEW FILE STARTS-->
+<div *ngIf='data.preview'>
+    <h1 mat-dialog-title>{{data.preview.name}}</h1>
+    <div mat-dialog-content class="no-scroll-on-content">
+        <div class="row" *ngIf="!isPdfLoaded">
+            <span class="preview-area">
+                <app-partial-loader></app-partial-loader>
+            </span>
+        </div>
+        <ngx-doc-viewer [url]="previewContent" [viewer]="viewer" [googleCheckContentLoaded]='contentLoader'
+            (loaded)='pdfLoaded()' class="preview-area">
+        </ngx-doc-viewer>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="btn custom-btn btn-light preview-close-btn" (click)='onNoClick()'>Close</button>
+    </div>
+</div>
+<!-- PREVIEW FILE ENDS-->
+
+<!-- SUBMIT SUPPORT TICKET RESPONSE STARTS-->
+<div *ngIf='data.postSupportTicketRespose' class="delete-modal">
+    <h1 mat-dialog-title>{{data.postSupportTicketRespose.header}}</h1>
+    <div mat-dialog-content>
+        <p>{{data.postSupportTicketRespose.supportTicketMessage}}</p>
+    </div>
+    <div mat-dialog-actions>
+        <button type="submit" class="btn custom-btn btn-primary margin-for-left-button" (click)='startTour()'>
+            Ok
+        </button>
+        <button type="submit" class="btn btn-light custom-btn margin-for-left-button"
+            (click)='onNoClick()'>Cancel</button>
+    </div>
+</div>
+<!-- SUBMIT SUPPORT TICKET RESPONSE ENDS-->
+
+<!-- DELETE WORK ITEM COMMENT STARTS-->
+<div *ngIf='data.removeWorkItemComment'>
+    <h1 mat-dialog-title>{{data.removeWorkItemComment.header}}</h1>
+    <div mat-dialog-content>
+        <p>Do you want to delete this {{data.removeWorkItemComment.commentBody}}?</p>
+    </div>
+    <div mat-dialog-actions>
+        <button type="submit" class="btn btn-light custom-btn margin-for-left-button"
+            (click)='onNoClick()'>Cancel</button>
+        <button type="submit" class="btn custom-btn btn-primary margin-for-left-button" (click)='startTour()'>
+            Ok
+        </button>
+    </div>
+</div>
+<!-- DELETE WORK ITEM COMMENT ENDS-->

@@ -1,0 +1,46 @@
+<div class="card table-card">
+    <div class="card-header">
+        Comments
+        <span class="ml-2 badge badge-success count" *ngIf='totalComments'> {{totalComments}} </span>
+    </div>
+    <div *ngIf="!comments.length">
+        <p class="noUser">{{Constants.errorMessages.NO_DATA_FOUND}}</p>
+    </div>
+    <div class="card-body">
+        <div class="d-flex flex-column comment-chain-container" *ngIf="comments.length">
+            <div class="col-sm-12 pr-0" *ngFor="let comment of comments">
+                <div class="comment-box-container mb-3" [ngClass]="{'align-right': comment.cpUserId === loggedInUser}">
+                    <div class="row mb-3">
+                        <div class="col-sm-6 d-flex justify-content-start align-items-baseline">
+                            <ngx-avatar size="40" name="{{comment.userName}}"></ngx-avatar>
+                            <span class="comment-box-header" [ngClass]="{'h5': comment.cpUserId !== loggedInUser}">
+                                {{comment.userName}}
+                            </span>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                            <span>
+                                {{comment.createdAt | date : 'MM/dd/y h:mm a'}}
+                            </span>
+                        </div>
+                    </div>
+                    <div [innerHTML]="comment.description">
+                        {{comment.description}}
+                    </div>
+                    <i class="far fa-trash-alt list-icons" title="Delete" *ngIf='comment.cpUserId === loggedInUser'
+                    (click)='deleteComment(comment)'></i>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <angular-editor [(ngModel)]="newComment" [config]="editorConfig"></angular-editor>
+                <div class="d-flex justify-content-end px-0 pb-2 mt-2">
+                    <button class="btn btn-primary custom-btn" (click)="postNewComment()"
+                        [disabled]='!newComment.length'>
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

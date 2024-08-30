@@ -1,0 +1,141 @@
+.app-background {
+    height: 100vh;
+    // width: 100vw;
+    background-size: cover !important;
+    background-position: bottom !important;
+    background-attachment: fixed !important;
+}
+
+/*
+   * Navbar
+   */
+
+.navbar {
+    pointer-events: none;
+}
+
+.navbar-brand {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1rem;
+    background-color: white;
+    pointer-events: auto;
+
+    .logo-size {
+        width: 12.5rem;
+        object-fit: contain;
+    }
+}
+
+#navbar-logo {
+    max-height: 4em;
+}
+
+.navbar .form-control {
+    padding: 0.75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+}
+
+.navbar-settings {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    pointer-events: initial;
+    cursor: pointer;
+}
+
+.theme-icon {
+    color: #400094;
+    align-self: center;
+    margin-right: 10px;
+}
+
+@media (max-width: 750px) {
+    .theme-icon {
+        display: none;
+    }
+}
+
+@media (max-width: 47.9em) {
+    .navbar {
+        background-color: white;
+    }
+    .navbar .menu-icon {
+        font-size: 2rem;
+    }
+    .navbar .fa-caret-down {
+        display: none;
+    }
+}
+
+.user-circle {
+    background-color: #00cdb8;
+    border-radius: 3em;
+    width: 3em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    pointer-events: auto;
+    font-family: "Libre Franklin";
+    transition: 0.3s;
+    margin-right: 1.25em;
+}
+
+.user-circle:hover,
+.user-circle.active {
+    background-color: #86e7de;
+}
+
+.user-circle:hover .fa-caret-down {
+    transition: 0.3s;
+    color: #86e7de;
+}
+
+.user-circle .fa-caret-down {
+    position: absolute;
+    color: #333333;
+    margin-left: 4.25em;
+}
+
+/* Heading */
+
+.heading-icon {
+    height: 2em;
+}
+
+/* Navigation */
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.sidebar-settings-active {
+    background-color: #00cdb8;
+    color: white;
+}
+
+.logout-item:hover {
+    cursor: pointer;
+}
+
+.logout-item > a {
+    color: #400094;
+}
+
+.right-sidenav-img {
+    width: 25px;
+  }
+
+  .welcome-width {
+      max-width: 85%;
+  }
+
+  .artifact-btn {
+    border-radius: 2rem;
+    font-size: 15px;
+    line-height: 0.5;
+  }

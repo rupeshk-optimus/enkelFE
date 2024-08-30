@@ -1,0 +1,20 @@
+<div id="myTabContent" class="tab-content">
+    <div class="card card-border
+      remove-extra-margin-card
+      border-top-left-right-radius" [ngClass]="{'card-height':reportLoadFailed === true}">
+        <div class="dashboard-container mt-1">
+            <div class="col-12 col-sm-6 card-header">
+                Reports
+            </div>
+            <div class="col-12 col-sm-6 text-align reset-btn-mobile">
+                <app-client-list *ngIf="showClients" class="client-list"></app-client-list>
+            </div>
+            <div class="card-body" [ngClass]="{'card-body-margin-top':reportLoadFailed === false}">
+                <div *ngIf="reportLoadFailed" class="list-font-family list-font-size">Report Not Found</div>
+                <div id="reportContainer" class="my-4 w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

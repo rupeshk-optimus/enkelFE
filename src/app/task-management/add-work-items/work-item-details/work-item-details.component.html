@@ -1,0 +1,129 @@
+<div class="d-flex flex-wrap">
+    <div class="col-lg-8 px-0">
+        <div class="card card-border">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="bs-component">
+                            <form [formGroup]='workItemForm'>
+                                <fieldset>
+                                    <div class="form-group" *ngIf='workItemForm.controls.workItemParentName.value'>
+                                        <label class="col-form-label h5" for="subject">Parent Name</label>
+                                        <input type="text" class="form-control" placeholder="Parent Name"
+                                            id="parentName" formControlName="workItemParentName" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label h5" for="subject">Name</label>
+                                        <input type="text" class="form-control" placeholder="Name" id="name"
+                                            formControlName="workItemName" readonly>
+                                    </div>
+                                    <div class="row d-flex align-items-baseline mb-3">
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="col-12 status-container">
+                                                <div class="status-box" [style.background-color]="workItemStatusColor">
+                                                </div>
+                                                <strong (click)='statusDropDown.toggle()'>{{
+                                                    workItemStatusViewValue }}</strong>
+                                                <mat-select #statusDropDown id="status-selector"
+                                                    formControlName="workItemStatus" required>
+                                                    <mat-option *ngFor="let status of workItemStatusList"
+                                                        [value]="status.value">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="status-box"
+                                                                [style.background-color]="status.color"></div>
+                                                            {{status.viewValue}}
+                                                        </div>
+                                                    </mat-option>
+                                                </mat-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="col-12 status-container read-only-fields">
+                                                <div class="status-box"
+                                                    [style.background-color]="workItemPriorityColor"></div>
+                                                <strong>{{workItemForm.controls.workItemPriority.value}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="col-12 status-container px-1 read-only-fields">
+                                                <span class="text-muted">Start</span>
+                                                <strong>{{workItemForm.controls.workItemStartDate.value | date
+                                                    :'MM/dd/y'}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6">
+                                            <div class="col-12 status-container px-1 read-only-fields">
+                                                <span class="text-muted">Due</span>
+                                                <strong>{{workItemForm.controls.workItemDueDate.value | date :
+                                                    'MM/dd/y'}}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex align-items-baseline mb-3">
+                                        <div class="col-md-6">
+                                            <div class="col-12 status-container read-only-fields"
+                                                title="{{workItemForm.controls.workItemClient.value }}">
+                                                <span class="text-muted">Client</span>
+                                                <strong>{{workItemForm.controls.workItemClient.value | truncateText:15
+                                                    }}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-12 status-container read-only-fields"
+                                                title="{{workItemForm.controls.workItemProposalName.value}}">
+                                                <span class="text-muted">Proposal</span>
+                                                <strong>{{workItemForm.controls.workItemProposalName.value |
+                                                    truncateText:15 }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label h5" for="body">Description</label>
+                                        <div class="col-12 status-container read-only-fields custom-text-area py-2"
+                                            [innerHTML]="workItemForm.controls.workItemDescription.value">
+                                            {{workItemForm.controls.workItemDescription.value}}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card card-border">
+            <div class="sender-box-header card-header d-flex justify-content-center">
+                Assignee
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-center mb-4">
+                    <ngx-avatar size="100" name="{{workItemForm.controls.workItemAssignees.value}}"></ngx-avatar>
+                </div>
+                <div class="col-12 status-container read-only-fields d-flex justify-content-center"
+                    title="{{workItemForm.controls.workItemAssignees.value}}">
+                    {{workItemForm.controls.workItemAssignees.value |
+                    truncateText:15 }}
+                </div>
+                <div class="sender-box-header card-header d-flex justify-content-center border-top py-4 mb-0 mt-4">
+                    Watchers
+                </div>
+                <div class="watcher-list">
+                    <div class="watcher my-2" *ngFor="let watcher of watchers">
+                        {{watcher.watcherName | truncateText:20}}
+                    </div>
+                </div>
+                <div class="button-container d-flex justify-content-center mt-3">
+                    <button class="btn btn-primary custom-btn" *ngIf='showWatchButton' (click)="watchWorkItem()">
+                        Watch
+                    </button>
+                    <button class="btn btn-primary custom-btn" *ngIf='!showWatchButton' (click)="unWatchWorkItem()">
+                        Unwatch
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

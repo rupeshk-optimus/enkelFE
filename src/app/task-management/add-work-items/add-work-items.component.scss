@@ -1,0 +1,24 @@
+// CHILD COMPONENT CONTAINER STARTS
+.margin-for-children {
+    margin-top: -17%;
+}
+
+.margin-for-children-with-parent {
+    margin-top: -8%;
+}
+// CHILD COMPONENT CONTAINER ENDS
+
+// MEDIA QUERIES STARTS
+@media screen and (max-width: 450px) {
+    .margin-for-children {
+        margin-top: -15%;
+    }
+}
+
+@media (min-width: 451px) and (max-width: 850px) {
+    .margin-for-children {
+        margin-top: -10%;
+    }
+}
+// MEDIA QUERIES ENDS
+

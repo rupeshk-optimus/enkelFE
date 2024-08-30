@@ -1,0 +1,25 @@
+<div class="col-12 px-0 d-flex align-items-center">
+    <div class="col-lg-9 col-md-6 col-sm-4 px-0 d-flex">
+        <i class="fad fa-th-large mr-2 primary-color-icons" [style.color]="iconColor"></i>
+        <strong>{{workItemType}} </strong>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-4 d-flex justify-content-between">
+        <button class="btn btn-primary custom-btn" (click)="saveWorkItem()">
+            Save
+        </button>
+        <button class="btn btn-secondary custom-btn" (click)="goBack()">
+            Cancel
+        </button>
+    </div>
+</div>
+<app-work-item-details></app-work-item-details>
+<div class="col-lg-8 col-md-12 px-0"
+    [ngClass]="parentWorkItemGuid === '0' ? 'margin-for-children':'margin-for-children-with-parent'">
+    <app-work-item-children></app-work-item-children>
+</div>
+<div class="col-lg-8 col-md-12 px-0">
+    <app-work-item-attachments></app-work-item-attachments>
+</div>
+<div class="col-lg-8 col-md-12 px-0">
+    <app-work-item-comments></app-work-item-comments>
+</div>

@@ -1,0 +1,29 @@
+.custom-drop {
+    border: 1px solid #ced4da;
+    line-height: 5px;
+    border-radius: 0.5rem;
+    background-color: white;
+    width: 144px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.second-drop {
+    left: 11rem !important;
+    right: auto;
+    top: 30% !important;
+    transform: translateY(0px);
+    bottom: auto;
+}
+
+ul, li {
+    list-style-type: none;
+    padding-left: 4px;
+    font-size: 14px;
+}
+
+.dropdown-item {
+    padding: 0.25rem 0rem !important;
+}

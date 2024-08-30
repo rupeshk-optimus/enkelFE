@@ -1,0 +1,27 @@
+<app-side-nav></app-side-nav>
+<div class="row header">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row class="header-container">
+            <mat-menu #menu="matMenu" class="options">
+                <div class="button-container" role="list">
+                    <button mat-mini-fab role="listItem" [routerLink]="[Constants.navigations.SETTINGS]"
+                        [routerLinkActive]="['active']" class="action-button" matTooltip="Settings"
+                        matTooltipPosition='left'>
+                        <mat-icon class="ml-3" mat-list-icon>settings</mat-icon>
+                    </button>
+                    <button mat-mini-fab role="listItem" (click)='logOut()' class="action-button" matTooltip="Logout"
+                        matTooltipPosition='left'>
+                        <mat-icon class="ml-3 logout" mat-list-icon>logout</mat-icon>
+                    </button>
+                </div>
+            </mat-menu>
+            <div class="title">
+                {{sharedService.title.value}}
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+<button mat-mini-fab class="user" [matMenuTriggerFor]="menu" joyrideStep="{{Constants.StartTour.FOURTH_STEP}}"
+    title="My Account" text="Check your Account Details" (done)="onDone()">
+    {{verifiedUser.charAt(0)}}
+</button>

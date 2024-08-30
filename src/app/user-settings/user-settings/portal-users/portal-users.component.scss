@@ -1,0 +1,58 @@
+.table-tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.add-contact {
+    margin: 2px 14px;
+}
+
+.card-header-options {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.card-border {
+  border-radius: 1rem;
+}
+
+.card-top-left-right-border {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+.fa-user-plus {
+  font-size: 18px;
+  cursor: pointer;
+  color: #400094;
+  padding-left: 8px;
+}
+
+.text-align {
+  text-align: end;
+}
+
+.reset-btn-mobile {
+  margin-top: -11px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 576px) {
+  .reset-btn-mobile {
+    margin-top: 20px;
+  }
+
+  .text-align {
+    text-align: start;
+  }
+}
+
+.access-column {
+  width: 11rem;
+}
+
+.role-column {
+  width: 8rem;
+}

@@ -1,0 +1,59 @@
+<div class="d-flex flex-wrap">
+    <div class="col-lg-8 px-0">
+        <div class="card card-border">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="bs-component">
+                            <form [formGroup]='supportTicketForm'>
+                                <fieldset>
+                                    <div class="row d-flex align-items-baseline mb-3">
+                                        <div class="col-md-6">
+                                            <span>{{currentSupportTicketSentDate | date : 'MMMM d, y h:mm a'}}</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-12 status-container">
+                                                <div class="status-box" [style.background-color]="supportTicketStatus.color"></div>
+                                                {{supportTicketStatus.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label h5" for="subject">Subject</label>
+                                        <input type="text" class="form-control" placeholder="Subject" id="subject"
+                                            formControlName="supportTicketSubject" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label h5" for="body">Body</label>
+                                        <textarea class="form-control" id="body" rows="6"
+                                            formControlName="supportTicketBody" readonly></textarea>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card card-border">
+            <div class="sender-box-header card-header d-flex justify-content-center">
+                Sender
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-center mb-4">
+                    <ngx-avatar size="100" name="{{supportTicketForm.controls.supportTicketSenderName.value}}"></ngx-avatar>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control pl-5" placeholder="Subject" id="sender"
+                        [value]='supportTicketForm.controls.supportTicketSenderName.value' readonly>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <span class="sender-email">{{supportTicketForm.controls.supportTicketSenderEmail.value}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

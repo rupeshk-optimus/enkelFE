@@ -1,0 +1,151 @@
+.mat-dialog-actions {
+  justify-content: center;
+  font-family: "Libre Franklin", sans-serif !important;
+  margin-bottom: 0 !important;
+}
+
+.mat-dialog-title {
+  display: flex;
+  justify-content: center;
+  font-family: "PT Sans", sans-serif !important;
+  text-align: left;
+  padding-bottom: 2%;
+  margin-top: -2%;
+  font-size: 22px;
+}
+
+.mat-dialog-content {
+  font-family: "PT Sans", sans-serif !important;
+  text-align: center;
+  padding: 0 35px;
+  font-size: 20px;
+  padding-bottom: 3%;
+}
+
+.file-upload-container {
+  max-height: 13rem;
+}
+
+.file-upload-form {
+  width: max-content;
+}
+
+.hide-field {
+  display: none;
+}
+
+.file-icon-color {
+  color: #400094;
+}
+
+.fields-container {
+  display: flex;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 1rem;
+
+  h6 {
+    margin-bottom: 0.2rem;
+  }
+
+  p {
+    display: flex;
+
+    small {
+      font-size: 12px;
+    }
+  }
+}
+
+.remove-icon {
+  margin: 0 5px;
+  border-radius: 7px !important;
+  cursor: pointer;
+  height: 2rem;
+}
+
+.loader-container {
+  height: 1rem;
+}
+
+.required-sign {
+  color: #ff4e4c !important;
+}
+
+.form-end-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 0;
+}
+
+.margin-for-left-button {
+  margin-right: 1rem;
+}
+
+.green-mark {
+  color: green;
+  font-size: 2rem;
+}
+
+.red-mark {
+  color: red;
+  font-size: 2rem;
+}
+
+.error-text {
+  font-size: 10px;
+  display: flex;
+}
+
+.text-box-size {
+  width: 180px;
+}
+
+.font-size {
+  font-size: 15px;
+}
+
+.left-padding {
+  padding-left: 2px;
+}
+
+.file-icon-size {
+  font-size: 20px;
+}
+
+th {
+  font-size: 15px;
+  text-align: left;
+}
+
+td,
+th {
+  padding-top: 20px;
+  padding-bottom: 6px;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.remove-button {
+  justify-content: center;
+}
+
+.fileDropRef {
+  display: none;
+}
+
+.preview-area {
+  width: 100%;
+  height: 93vh;
+}
+.no-scroll-on-content {
+  overflow: hidden;
+}
+
+.preview-close-btn {
+  margin-left: 2rem;
+}

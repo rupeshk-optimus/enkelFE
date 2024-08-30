@@ -1,0 +1,40 @@
+<div class="card card-border card-top-left-right-border" [ngClass]="{'card-height':reportLoadFailed === true}">
+  <div class="dashboard-container mt-1">
+    <mat-icon class="backToDashboard"
+      *ngIf="sharedService.title.value === Constants.appConstants.REPORT_DETAILS && !disableLinks"
+      (click)="backToDashboard()" matTooltip="Back to Dashboard" matTooltipPosition="below">
+      <i class="fal fa-angle-left"></i>
+    </mat-icon>
+    <div class="row" *ngIf="reportModel?.publishMonth && !reportLoadFailed">
+      <div class="col-md-7 card-header">
+      </div>
+      <div class="d-flex flex-column justify-content-end pr-4 col-md-5 card-header right">
+        <span class="text-alignment">
+          Updated as of {{ reportModel.publishMonth + ' ' + reportModel.publishYear }}
+        </span>
+        <span class="text-alignment download-link" [routerLink]="['/', Constants.navigations.REPORTS]">
+          Download statement
+        </span>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 text-align reset-btn-mobile">
+      <app-client-list *ngIf="disableLinks && getClientGuid()" class="client-list"></app-client-list>
+    </div>
+    <div *ngIf="reportLoadFailed" class="contact-admin-container">
+      <div class="list-font-family list-font-size">{{errGeneralMsg}}</div>
+      <div class="gap-bw-msgAndName"></div>
+      <ng-container *ngIf="isSuccessLeadMailPresent">
+        <div class="list-font-family list-font-size">Name {{errNameValue}}</div>
+        <div class="list-font-family list-font-size">
+          Email <a *ngIf='isSuccessLeadMailPresent' [href]="mailText" class="mail-text"
+            matTooltip="Send mail to administrator">
+            {{errEmailValue}}
+          </a>
+        </div>
+      </ng-container>
+    </div>
+    <div id="dashboardContainer" [ngStyle]="{'height': reportLoadFailed? '100%':''}"
+      [ngClass]="{'reporting-class': !reportModel?.publishMonth}"></div>
+  </div>
+</div>

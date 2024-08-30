@@ -1,0 +1,68 @@
+<div class="app-background" [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')'}">
+    <app-loader></app-loader>
+
+    <nav class="navbar fixed-top flex-md-nowrap p-0" *ngIf="isLoggedIn()">
+        <div class="col-2 navbar-settings d-block d-sm-block d-md-none">
+            <i class="fal menu-icon fa-bars" (click)='toggleLeftSideNav()'></i>
+        </div>
+        <a class="navbar-brand col-lg-2 col-md-4 col-8 mr-0" href="#">
+            <img id="navbar-logo" class="logo-size" src="../assets/images/sidenav-Logo.png"></a>
+        <div class="col-2 navbar-settings">
+            <!-- TO_DO -->
+            <!-- <i class="fal fa-question-circle fa-2x theme-icon" matTooltip="User Guide" matTooltipPosition='left'
+                [routerLink]="[Constants.navigations.USER_GUIDE]" joyrideStep="{{Constants.StartTour.SIXTH_STEP}}"
+                title="{{Constants.StartTour.SIXTH_STEP_TITLE}}" text="{{Constants.StartTour.SIXTH_STEP_TEXT}}">
+            </i> -->
+            <div class="nav-link user-circle" (click)='toggleRightSideNav()'
+                joyrideStep="{{Constants.StartTour.EIGHTH_STEP}}" title="{{Constants.StartTour.EIGHTH_STEP_TITLE}}"
+                text="{{Constants.StartTour.EIGHTH_STEP_TEXT}}" (done)="onDone()">
+                {{verifiedUser}}
+                <i class="fas fa-caret-down d-none d-sm-none d-md-block"></i>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" *ngIf="isLoggedIn()">
+        <div class="row">
+            <app-side-nav></app-side-nav>
+        </div>
+    </div>
+    <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-4" [ngClass]="{'welcome-width':mainWidth}">
+        <div *ngIf="isLoggedIn() && currentPageHeading !== Constants.appConstants.WELCOME"
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-3 border-bottom">
+            <h1 class="h2"><img class="heading-icon mr-3" [src]="imgSrc" />{{currentPageHeading}}</h1>
+        </div>
+        <router-outlet></router-outlet>
+    </main>
+    <nav class="sidebar-settings" [ngClass]="{'active': (toggleRightSideButton === true)}">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item" (click)='(toggleRightSideButton = false)'>
+                    <a class="nav-link" [routerLink]="[Constants.navigations.SETTINGS]"
+                        [routerLinkActive]="['sidebar-settings-active']">
+                        <div class="icon-container">
+                            <!-- <i class="fad fa-fw fa-user-circle"></i> -->
+                            <img class="right-sidenav-img" src="{{Constants.appConstants.USER_IMG}}">
+                        </div>
+                        <div class="text-label">
+                            User Profile
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr class="nav-break" />
+                </li>
+                <li class="nav-item logout-item">
+                    <a class="nav-link" (click)='logOut()'>
+                        <div class="icon-container">
+                            <!-- <i class="fad fa-fw fa-sign-out-alt"></i> -->
+                            <img class="right-sidenav-img" src="{{Constants.appConstants.LOG_OUT_IMG}}">
+                        </div>
+                        <div class="text-label">
+                            Logout
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,67 @@
+<div class="card card-border card-top-left-right-border">
+    <div class="row">
+        <div class="col-sm-10 row" *ngIf='currentPath.length'>
+            <div class="col-1 no-padding">
+                <i class="far fa-angle-left fa-2x list-icons folder-back-button" title="back"
+                    (click)='goToPreviousFolder()'></i>
+            </div>
+            <div class="col-8">
+                <span *ngFor='let step of currentPath' class="folder-step">
+                    {{step.name}} /
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row" *ngIf='filesForTable?.length > 0'>
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Period</th>
+                                <th>Expiry Date</th>
+                                <!-- <th>View</th> -->
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let file of filesForTable" (click)='openFolder(file)'
+                                [ngClass]="{'row-pointer':(file.isFolder)}">
+                                <td *ngIf='!file.isFolder' title="file"> <i class="far fa-file file-icon"></i> </td>
+                                <td *ngIf='file.isFolder' title="open"> <i class="far fa-folder list-icons"></i></td>
+                                <td title="{{file.name }}" [ngClass]="{'file-name-hyperlink':(!file.isFolder)}">
+                                    {{file.name | truncateText:25}}
+                                </td>
+                                <td *ngIf='!file.isFolder' title="{{file.reportType}} ">
+                                    {{file.reportType | truncateText:15}}
+                                </td>
+                                <td *ngIf='file.isFolder'> </td>
+                                <td *ngIf='file.isFolder'> </td>
+                                <td *ngIf='!file.isFolder'> {{file.period | date : 'MMM yyyy'}} </td>
+                                <td *ngIf='!file.isFolder'> {{file?.expiredAt | date : 'MMM yyyy' }} </td>
+                                <td *ngIf='file.isFolder'> </td>
+                                <!-- <td>
+                                    <i class="fal fa-eye list-icons view-icon" *ngIf='!file.isFolder'
+                                        (click)='previewFile(file.name, file.id, file.guid)'></i>
+                                </td> -->
+                                <td>
+                                    <i class="far fa-file-download list-icons" *ngIf='!file.isFolder'
+                                        (click)='downloadReport(file.name, file.id, file.guid, file.url)'></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf='!filesForTable.length'>
+            <div class="col-sm-12">
+                {{constants.errorMessages.NO_DATA_FOUND}}
+            </div>
+        </div>
+    </div>
+</div>

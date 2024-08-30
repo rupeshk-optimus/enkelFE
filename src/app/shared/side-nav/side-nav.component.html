@@ -1,0 +1,124 @@
+
+<nav class="col-lg-3 col-md-4 d-none d-md-block sidebar" [ngClass]="{'active': (showMenu === true)}">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngIf='showDashBoardTab'>
+        <a class="nav-link" style="padding-left: 14px;color: #333;background: none;">
+          <div class="text-label" style="font-size: 11px;">
+            Switch Company
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <select class="form-control form-control-sm current-account" placeholder="Select Client" required [(ngModel)]='currentAccount'
+          (ngModelChange)='changeAccount()' joyrideStep="{{Constants.StartTour.FIRST_STEP}}" title="{{Constants.StartTour.FIRST_STEP_TITLE}}"
+          text="{{Constants.StartTour.FIRST_STEP_TEXT}}" [prevTemplate]="prevButton" [nextTemplate]="nextButton"
+          [doneTemplate]="doneButton" [counterTemplate]="counter">
+          <option *ngFor="let account of accounts" [ngValue]="account">
+            {{account.clientName}}
+          </option>
+        </select>
+        <ng-template #prevButton>
+            <button class="tour-button" mat-button>
+              <i class="fal fa-angle-left tour-icon tour-go-previous" position="bottom"></i>
+            </button>
+          </ng-template>
+          <ng-template #nextButton>
+            <button class="tour-button" mat-button>
+              <i class="fal fa-angle-right tour-icon tour-go-next" position="bottom"></i>
+            </button>
+          </ng-template>
+          <ng-template #doneButton>
+            <button class="tour-button" mat-button>
+              <i class="fal fa-check tour-icon" position="bottom"></i>
+            </button>
+          </ng-template>
+          <ng-template #counter let-step="step" let-total="total">
+            {{ step }} of {{ total }} steps
+          </ng-template>
+      </li>
+      <li class="nav-item" *ngIf='showDashBoardTab'>
+        <a class="nav-link" [routerLink]="[Constants.navigations.DASHBOARD]" routerLinkActive='active'
+          (click)='closeLeftSideNav()' joyrideStep="{{Constants.StartTour.SECOND_STEP}}" title="{{Constants.StartTour.SECOND_STEP_TITLE}}"
+          text="{{Constants.StartTour.SECOND_STEP_TEXT}}" [prevTemplate]="prevButton" [nextTemplate]="nextButton"
+          [doneTemplate]="doneButton" [counterTemplate]="counter">
+          <div class="icon-container">
+            <!-- <i class="fad fa-fw  fa-tachometer-alt-fast"></i> -->
+            <img class="sidenav-img" src="{{Constants.appConstants.DASHBOARD_IMG}}">
+          </div>
+          <div class="text-label">
+            {{Constants.StartTour.SECOND_STEP_TITLE}}
+          </div>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf='showReportsTab'>
+        <a class="nav-link" [routerLink]="[Constants.navigations.REPORTS]" routerLinkActive='active'
+          (click)='closeLeftSideNav()' joyrideStep="{{Constants.StartTour.THIRD_STEP}}" title="{{Constants.StartTour.THIRD_STEP_TITLE}}"
+          text="{{Constants.StartTour.THIRD_STEP_TEXT}}">
+          <div class="icon-container">
+            <img class="sidenav-img" src="{{Constants.appConstants.REPORTS_IMG}}">
+            <!-- <i class="fad fa-fw fa-file-invoice-dollar"></i> -->
+          </div>
+          <div class="text-label">
+            {{Constants.StartTour.THIRD_STEP_TITLE}}
+          </div>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf='showFilesTab'>
+        <a class="nav-link" [routerLink]="[Constants.navigations.FILES]" routerLinkActive='active'
+          (click)='closeLeftSideNav()' joyrideStep="{{Constants.StartTour.FOURTH_STEP}}" title="{{Constants.StartTour.FOURTH_STEP_TITLE}}"
+          text="{{Constants.StartTour.FOURTH_STEP_TEXT}}">
+          <div class="icon-container">
+            <img class="sidenav-img" src="{{Constants.appConstants.FILES_IMG}}">
+            <!-- <i class="fad fa-fw fa-folders"></i> -->
+          </div>
+          <div class="text-label">
+            {{Constants.StartTour.FOURTH_STEP_TITLE}}
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <hr class="nav-break" />
+      </li>
+      <li class="nav-item" *ngIf='showMailsTab'>
+        <a class="nav-link" [routerLink]="[Constants.navigations.CSL_CONNECT]" routerLinkActive='active'
+          (click)='closeLeftSideNav()' joyrideStep="{{Constants.StartTour.FIFTH_STEP}}" title="{{Constants.StartTour.FIFTH_STEP_TITLE}}"
+          text="{{Constants.StartTour.FIFTH_STEP_TEXT}}">
+          <div class="icon-container">
+            <img class="sidenav-img" src="{{Constants.appConstants.CSL_IMG}}">
+            <!-- <i class="fad fa-envelope"></i> -->
+          </div>
+          <div class="text-label">
+            {{Constants.StartTour.FIFTH_STEP_TITLE}}
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[Constants.navigations.SUPPORT]" routerLinkActive='active'
+          (click)='closeLeftSideNav()' joyrideStep="{{Constants.StartTour.SIXTH_STEP}}" title="{{Constants.StartTour.SIXTH_STEP_TITLE}}"
+          text="{{Constants.StartTour.SIXTH_STEP_TEXT}}">
+          <div class="icon-container">
+            <img class="sidenav-img" src="{{Constants.appConstants.SUPPORT_IMG}}">
+          </div>
+          <div class="text-label">
+            {{Constants.StartTour.SIXTH_STEP_TITLE}}
+            <span class="mt-2 mr-2 badge badge-success count"> {{supportTicketMetaData?.totalUnread}} </span>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[Constants.navigations.WORK_ITEM]" routerLinkActive='active'
+          (click)='closeLeftSideNav()' joyrideStep="{{Constants.StartTour.SEVENTH_STEP}}" title="{{Constants.StartTour.SEVENTH_STEP_TITLE}}"
+          text="{{Constants.StartTour.SEVENTH_STEP_TEXT}}">
+          <div class="icon-container">
+            <img class="sidenav-img" src="{{Constants.appConstants.WORK_ITEM_IMG}}">
+          </div>
+          <div class="text-label">
+            {{Constants.StartTour.SEVENTH_STEP_TITLE}}
+            <span class="mt-2 mr-2 badge badge-success count"> {{workItemMetaData}} </span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

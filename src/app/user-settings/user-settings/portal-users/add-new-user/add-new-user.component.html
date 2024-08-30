@@ -1,0 +1,142 @@
+<div class="card card-border">
+    <div class="card-header">
+        Add Contact
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bs-component">
+                    <form [formGroup]='cpUserForm'>
+                        <fieldset>
+                            <div class="form-group" *ngIf="showClientList">
+                                <label for="clientSelection">Client <span class="required-sign">*</span></label>
+                                <select class="form-control" formControlName='cpClient' placeholder="Select Client"
+                                    [ngClass]="{'is-invalid':(cpUserForm.controls.cpClient.touched && !cpUserForm.controls.cpClient.valid),
+                                'is-valid':(cpUserForm.controls.cpClient.touched && cpUserForm.controls.cpClient.valid)}"
+                                    required>
+                                    <option *ngFor="let client of clients" [value]="client.id">{{client.companyName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- FIRST_NAME -->
+                            <div class="form-group required">
+                                <label for="contactFirstName" class="col-form-label col-form-label-sm-4">First
+                                    Name <span class="required-sign">*</span></label>
+                                <input type="text" class="form-control" formControlName="cpUserFirstName"
+                                    [ngClass]="{'is-invalid':(cpUserForm.controls.cpUserFirstName.touched && !cpUserForm.controls.cpUserFirstName.valid) ,
+                                 'is-valid':(cpUserForm.controls.cpUserFirstName.touched && cpUserForm.controls.cpUserFirstName.valid) }" placeholder="Enter First Name" required>
+                            </div>
+                            <!-- LAST_NAME -->
+                            <div class="form-group">
+                                <label for="contactLastName" class="col-form-label col-form-label-sm-4">Last
+                                    Name <span class="required-sign">*</span></label>
+                                <input type="text" class="form-control" formControlName="cpUserLastName"
+                                    [ngClass]="{'is-invalid':(cpUserForm.controls.cpUserLastName.touched && !cpUserForm.controls.cpUserLastName.valid),
+                                    'is-valid':(cpUserForm.controls.cpUserLastName.touched && cpUserForm.controls.cpUserLastName.valid)}" placeholder="Enter Last Name" required>
+                            </div>
+                            <!-- EMAIL -->
+                            <div class="form-group">
+                                <label for="contactPrimaryEmail" class="col-form-label col-form-label-sm-4">Primary
+                                    Email <span class="required-sign">*</span></label>
+                                <input type="text" class="form-control" formControlName="cpUserPrimaryEmail" required
+                                    [ngClass]=" {'is-invalid':(cpUserForm.controls.cpUserPrimaryEmail.touched && !cpUserForm.controls.cpUserPrimaryEmail.valid),
+                                    'is-valid':(cpUserForm.controls.cpUserPrimaryEmail.touched && cpUserForm.controls.cpUserPrimaryEmail.valid)}"
+                                    aria-describedby="emailHelp" placeholder="Enter email">
+                                <div class="invalid-feedback" *ngIf="!cpUserForm.controls.cpUserPrimaryEmail.valid">
+                                    {{constants.errorMessages.incorrectPrimaryEmailLabel}}
+                                </div>
+                                <small
+                                    *ngIf="cpUserForm.controls.cpUserPrimaryEmail.untouched || cpUserForm.controls.cpUserPrimaryEmail.valid"
+                                    id="emailHelp" class="form-text text-muted">
+                                    {{constants.helpTextMessages.mailPrivacy}}
+                                </small>
+                            </div>
+                        </fieldset>
+                        <div class="form-group" *ngIf="cpUserId !=='0'">
+                            <label for="contactRole">Role <span class="required-sign">*</span></label>
+                            <select class="custom-select" formControlName='cpUserRole' placeholder="Select Roles"
+                                [ngClass]="{'is-invalid':(cpUserForm.controls.cpUserRole.touched && !cpUserForm.controls.cpUserRole.valid),
+                            'is-valid':(cpUserForm.controls.cpUserRole.touched && cpUserForm.controls.cpUserRole.valid)}"
+                                multiple required>
+                                <option *ngFor="let role of contactRoles" [value]="role">{{role.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group" *ngIf="cpUserId !=='0'">
+                            <label for="contactPrimaryEmail">Title</label>
+                            <input type="text" class="form-control" formControlName="cpUserTitle"
+                                placeholder="Enter Title">
+                        </div>
+
+                        <fieldset class="padding-for-form-array">
+                            <label for="accountEmails">Secondary Email</label>
+                            <button mat-mini-fab color="primary" class="icon-button" *ngIf='showAddSecondaryEmail'
+                                (click)="addEmail()" title="Add email">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                            <div class="form-group" formArrayName='cpUserSecondaryEmails'
+                                *ngFor='let email of cpUserSecondaryEmails.controls; let i=index'>
+                                <div class="input-group mb-3" [formGroupName]='i'>
+                                    <input type="email" class="form-control" aria-describedby="emailHelp"
+                                        placeholder="Enter secondary email"
+                                        [ngClass]="{'is-invalid':(showAddSecondaryEmail === false && cpUserSecondaryEmails.touched),
+                                        'is-valid':(cpUserSecondaryEmails.touched && email.controls.name.valid)}"
+                                        formControlName="name">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text remove-icon" (click)="removeEmail(i)">
+                                            <i class="fal fa-minus"></i>
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="cpUserSecondaryEmails.controls[i].invalid">
+                                        {{constants.errorMessages.incorrectPrimaryEmailLabel}}
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="findDuplicate(email.controls.name.value, 'cpUserSecondaryEmails')">
+                                        {{constants.errorMessages.incorrectEmailLabel}}
+                                    </div>
+                                </div>
+                                <small *ngIf="!email.controls.name.invalid" id="emailHelp" class="form-text text-muted">
+                                    {{constants.helpTextMessages.mailPrivacy}}
+                                </small>
+                            </div>
+                        </fieldset>
+                        <fieldset class="padding-for-form-array">
+                            <label for="contactContactNumbers">Contact Numbers</label>
+                            <button mat-mini-fab color="primary" class="icon-button" *ngIf='showAddPhoneButton'
+                                (click)="addPhoneNumber()" title="Add contact number">
+                                <i class="fal fa-plus"></i>
+                            </button>
+                            <div class="form-group" formArrayName='cpUserPhoneNumbers'
+                                *ngFor='let phone of cpUserPhoneNumbers.controls; let i=index'>
+                                <div class="input-group mb-3" [formGroupName]="i">
+                                    <input type="text" class="form-control" placeholder="Enter contact number"
+                                        [ngClass]="{'is-invalid':(showAddPhoneButton === false && cpUserPhoneNumbers.touched),
+                                        'is-valid':(cpUserPhoneNumbers.valid && cpUserPhoneNumbers.touched)}"
+                                        formControlName="name">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text remove-icon" (click)="removePhoneNumber(i)">
+                                            <i class="fal fa-minus"></i>
+                                        </span>
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="findDuplicate(phone.controls.name.value, 'cpUserPhoneNumbers')">
+                                        {{constants.errorMessages.incorrectPhoneLabel}}
+                                    </div>
+                                    <div class="invalid-feedback"
+                                        *ngIf="cpUserPhoneNumbers.controls[i].invalid">
+                                        {{constants.errorMessages.incorrectContactLabel}}
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-12 form-end-button-container">
+                <button type="submit" class="btn btn-light margin-for-left-button" (click)='resetForm()'>Reset</button>
+                <button type="submit" class="btn btn-primary" (click)='onSubmit()'
+                    [disabled]='!cpUserForm.valid'>Save</button>
+            </div>
+        </div>
+    </div>
+</div>

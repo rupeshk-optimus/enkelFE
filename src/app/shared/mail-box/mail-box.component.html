@@ -1,0 +1,108 @@
+<div *ngIf = "!noCSL" class="card card-border card-top-left-right-border">
+    <div class="row card-header">
+        <div class="col-12" *ngIf='!headerTitle'>
+            Your Client Success Lead is {{ cslMaildetails?.firstName + ' ' + cslMaildetails?.lastName }}
+        </div>
+        <div class="col-12" *ngIf='headerTitle'>
+            {{headerTitle}}
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bs-component">
+                    <form [formGroup]="mailForm">
+                        <fieldset *ngIf='cslMaildetails'>
+                            <div class="form-group row extra-padding-for-unchanged-fields"
+                                *ngIf='cslMaildetails?.contactNumbers[0]?.name'>
+                                <label for="phone" class="col-form-label col-form-label-sm-4">Phone</label>
+                                <div class="col-sm-8 my-auto">
+                                    <input type="text" readonly='' class="form-control-plaintext form-control-sm"
+                                        [value]="cslMaildetails?.contactNumbers[0].name">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <!-- SEND_TO -->
+                        <fieldset disabled="true">
+                            <div class="form-group">
+                                <label for="mailTo" class="col-form-label col-form-label-sm-4">To</label>
+                                <input type="email" class="form-control" disabled='true' formControlName="sendMailTo"
+                                    required>
+                            </div>
+                        </fieldset>
+
+                        <!-- MAIL_CC -->
+                        <fieldset>
+                            <div class="form-group"
+                                [ngClass]="{'has-danger':(mailCcParticipantsCount > constants.appConstants.MAXIMUM_MAIL_CC_COUNT) }">
+                                <label for="mailCC" class="col-form-label col-form-label-sm-4">
+                                    CC
+                                </label>
+                                <input type="text" class="form-control" formControlName="mailCC" [ngClass]="{'is-invalid':(mailForm.controls.mailCC.touched && !mailForm.controls.mailCC.valid) ||
+                                 ( mailCcParticipantsCount > constants.appConstants.MAXIMUM_MAIL_CC_COUNT)}">
+                                <div *ngIf='( mailCcParticipantsCount > constants.appConstants.MAXIMUM_MAIL_CC_COUNT)'
+                                    class="invalid-feedback">
+                                    {{mailCcParticipantsCount}}/{{constants.appConstants.MAXIMUM_MAIL_CC_COUNT}}
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- MAIL_SUBJECT -->
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="mailSubject" class="col-form-label col-form-label-sm-4">
+                                    Subject
+                                </label>
+                                <input type="text" class="form-control" formControlName="mailSubject"
+                                    maxlength="{{constants.appConstants.MAX_MAIL_SUBJECT_LIMIT}}" required>
+                            </div>
+                        </fieldset>
+
+                        <!-- MAIL BODY -->
+                        <div class="form-group">
+                            <label for="exampleTextarea">Body</label>
+                            <textarea class="form-control" id="exampleTextarea" rows="7"
+                                maxlength="{{constants.appConstants.MAX_MAIL_BODY_LIMIT}}"
+                                formControlName="mailBody"></textarea>
+                            <small id="emailHelp" class="form-text text-muted">
+                                {{mailBodyLength}}/{{constants.appConstants.MAX_MAIL_BODY_LIMIT}}
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-12 row">
+                <div class="col-sm-6 extra-top-padding-for-checkbox">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" (change)="toggleMailCopy()" class="custom-control-input"
+                                id="copyToSender" [checked]='sendCopy'>
+                            <label class="custom-control-label" for="copyToSender">
+                                Send me a copy
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 form-end-button-container">
+                    <button type="submit" class="btn custom-btn btn-light margin-for-left-button mail-btn"
+                        (click)='resetForm()'>Reset</button>
+                    <button type="submit" class="btn custom-btn btn-primary mail-btn"
+                        [disabled]='!mailForm.valid ||( mailCcParticipantsCount > constants.appConstants.MAXIMUM_MAIL_CC_COUNT)'
+                        (click)='sendMail()'>Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf = "noCSL" >
+    <div class="card">
+        <div class="card-header">Sorry!</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    {{this.errorMessage}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

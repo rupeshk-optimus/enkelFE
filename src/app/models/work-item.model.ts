@@ -1,0 +1,32 @@
+export class WorkItemModel {
+    AssigneeName ?: string;
+    childWorkItems ?: [];
+    clientId?: number;
+    clientGuid?: string;
+    CPUserId?: number;
+    createdBy: number;
+    Description ?: string;
+    endDate: Date;
+    id: number;
+    inputName?: string;
+    IsAssigneeNotified ?: boolean;
+    isRecurring ?: boolean;
+    guid?: string;
+    name: string;
+    ParentWorkId ?: number;
+    parentWorkItemId ?: number;
+    parentWorkItemGuid ?: string;
+    ProposalId?: number;
+    supportTicketGuid?: string;
+    supportTicketId?: number;
+    StartDate: Date;
+    updatedBy: number;
+    userId ?: number;
+    watchers ?: Array<any>;
+    WorkItemPriorityId: number;
+    WorkItemStatusId: number;
+    workItemStatusId?: number;
+    WorkItemTypeId: number;
+    workItemTypeId?: number;
+    WorkItemVisibilityId: number;
+}

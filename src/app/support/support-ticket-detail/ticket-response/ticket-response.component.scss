@@ -1,0 +1,81 @@
+/* COMMENT CHAIN CONTENT STARTS */
+.comment-chain-container {
+    max-height: 20rem;
+    margin-left: -1.8%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.align-right {
+    float: right;
+}
+
+.count {
+    font-size: 9px;
+}
+/* COMMENT CHAIN CONTENT ENDS */
+
+/* COMMENT-BOX STARTS*/
+.comment-box-container {
+    width: 450px;
+    border: 1px solid #dee2e6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #40009412;
+}
+
+.comment-box-header {
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.comment-file-hyperlink {
+    color: blue;
+    cursor: pointer;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+/* COMMENT-BOX ENDS*/
+
+// COMMENT TEXT BOX STARTS
+.file-input {
+    display: none;
+}
+
+.attachment-icon {
+    font-size: 42px;
+    color: #00cdb8;
+}
+
+.remove-attachment-icon {
+    cursor: pointer;
+    color: #00cdb8;
+    font-size: 15px;
+    border-radius: 50%;
+    text-align: center;
+    height: 15px;
+    width: 15px;
+}
+
+.remove-attachment-icon:hover {
+    color: white;
+    background-color: #00cdb8;
+}
+
+.add-attachment-button {
+    border-radius: 2rem;
+}
+// COMMENT TEXT BOX ENDS
+
+
+@media (max-width: 768px) {
+    .align-right {
+        float: left;
+    }
+    .comment-box-container {
+        width: 100%;
+    }
+}

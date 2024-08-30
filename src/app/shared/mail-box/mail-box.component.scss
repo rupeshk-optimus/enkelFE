@@ -1,0 +1,40 @@
+.extra-padding-for-unchanged-fields {
+    padding-left: 1rem;
+    margin-bottom: 0.50rem !important;
+  }
+
+ .extra-top-padding-for-checkbox {
+    padding-top: 2rem;
+ } 
+  
+.form-end-button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 0;
+  }
+
+  .margin-for-left-button {
+    margin-right: 1rem;
+  }
+
+  .margin-for-left-button:focus {
+    outline: none;
+  }
+
+  .custom-control-label {
+    position: initial;
+    margin-bottom: 0;
+    vertical-align: top;
+}
+
+  @media only screen and (min-width: 767px) and (max-width: 850px) {
+    .margin-for-left-button {
+      margin-right: 0.1rem;
+    }
+  }
+
+  .mail-btn {
+    border-radius: 2rem !important;
+    line-height: 1 !important;
+    font-size: 15px !important;
+  }

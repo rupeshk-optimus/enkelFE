@@ -1,0 +1,131 @@
+.email-container {
+  max-height: 76vh;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 15px 0 rgba(0, 0, 0, 0.1) !important;
+
+  .noClient {
+    justify-content: center;
+  }
+
+  .mat-menu {
+    background-color: rgba(74, 74, 74, 0.8);
+  }
+
+  .mat-menu-content {
+    padding-top: 0px !important;
+    padding-bottom: 0px;
+  }
+
+  .mat-menu-content:not(:empty) {
+    padding-top: 0px !important;
+    padding-bottom: 0px;
+  }
+
+  .height-reduce {
+    height: 13vh !important;
+  }
+
+  .mat-list-item.active {
+    outline: none;
+    border-left: 2px solid #400094;
+  }
+}
+
+.mat-list {
+  position: relative;
+  top: 55%;
+  overflow-y: auto;
+  width: 13.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.mat-list-item {
+  display: flex !important;
+  flex-direction: column-reverse;
+  cursor: pointer;
+  height: 35px;
+  margin-bottom: 0;
+  justify-content: center;
+
+  a {
+    // color: $primary;
+    margin-left: 2%;
+  }
+
+  .mat-icon {
+    // color: $primary;
+    float: left;
+    font-size: 20px;
+    margin-right: 13%;
+  }
+}
+
+.apply-margin {
+  margin-left: 28% !important;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.menu-button {
+  outline: none;
+  position: absolute;
+  right: 28px;
+  top: 11px;
+
+  mat-icon {
+    font-size: 24px;
+    // color: $alt-theme;
+    margin-bottom: 65%;
+  }
+}
+
+// @media only screen and (min-width: 401px) and (max-width: 850px) {
+//   .email-container {
+//     max-height: 55vh;
+//   }
+// }
+
+@media only screen and (max-width: 500px) {
+  .menu-button {
+    margin-top: -12%;
+  }
+}
+@media only screen and (max-width: 850px) {
+
+  .email-container {
+    max-height: 55vh;
+  }
+
+  .menu-button {
+    top: 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .menu-button {
+    top: 7rem;
+  }
+}
+
+.mat-menu-panel {
+  background: none !important;
+}
+
+.list-font-family {
+  font-family: 'PT Sans', sans-serif;
+}
+
+.list-font-size {
+  font-size: .875rem;
+}
+
+.changePosition {
+
+  position: absolute;
+  right: 2rem;
+}
