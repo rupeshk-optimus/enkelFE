@@ -35,5 +35,5 @@ jobs:
       - name: Build and push container image to registry
         run: |
           docker build -t ${{ env.ACRNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }} .
-          docker push ${{ env.ACRNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+ #         docker push ${{ env.ACRNAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
 
