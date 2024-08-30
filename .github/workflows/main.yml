@@ -5,7 +5,9 @@
 name: Build and deploy a container to an Azure Container Apps - ACA
 
 on:
-
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 env:
